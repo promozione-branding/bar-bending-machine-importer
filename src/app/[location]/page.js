@@ -5,7 +5,9 @@ import { notFound } from "next/navigation";
 export async function generateMetadata({ params }) {
     const { location } = await params;
 
-    const rawCity = location.split("in-").pop();
+    const decodedLocation = decodeURIComponent(location);
+
+    const rawCity = decodedLocation.split("in-").pop();
 
     const cityName = rawCity
         .split("-")
@@ -20,15 +22,22 @@ export async function generateMetadata({ params }) {
 
 const Page = async ({ params }) => {
     const { location } = await params;
+
+    const decodedLocation = decodeURIComponent(location);
+
+    console.log("URL location:", location);
+    console.log("Decoded location:", decodedLocation);
+
     const validCity = serviceLocations.find(
-        (c) => c.href.replace("/", "") === location
+        (c) => decodeURIComponent(c.href.replace("/", "")) === decodedLocation
     );
+    console.log(validCity.label)
 
     if (!validCity) {
         notFound();
     }
 
-    return <CityPage location={location} />;
+    return <CityPage location={validCity.label} />;
 };
 
 export default Page;

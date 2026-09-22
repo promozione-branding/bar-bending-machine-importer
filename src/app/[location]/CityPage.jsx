@@ -7,23 +7,25 @@ import { useParams } from 'next/navigation';
 import { ChevronRight, CheckCircle } from "lucide-react";
 import CoreProduct from '@/components/Home/CoreProduct';
 import IndustriesSection from '@/components/Home/IndustriesSection';
-export default function CityPage() {
-    const params = useParams();
+export default function CityPage({}) {
+  const params = useParams();
 
-    const formatCityName = (slug) => {
-        if (!slug) return "India";
+const formatCityName = (slug) => {
+    if (!slug) return "India";
 
-        return slug
-            .replace(/\((.*?)\)/g, " ($1)")
-            .replace(/-/g, " ")
-            .replace(/\b\w/g, char => char.toUpperCase());
-    };
+    const decodedSlug = decodeURIComponent(slug);
 
-    const citySlug = params?.location?.includes("-in-")
-        ? params.location.split("-in-")[1]
-        : null;
+    return decodedSlug
+        .replace(/\((.*?)\)/g, " ($1)")
+        .replace(/-/g, " ")
+        .replace(/\b\w/g, (char) => char.toUpperCase());
+};
 
-    const cityName = citySlug ? formatCityName(citySlug) : "India";
+const citySlug = params?.location?.includes("-in-")
+    ? params.location.split("-in-")[1]
+    : null;
+
+const cityName = citySlug ? formatCityName(citySlug) : "India";
 
     const cards = [
         {
