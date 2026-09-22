@@ -11,6 +11,7 @@ export default function FormSection() {
         e.preventDefault();
         const formData = new FormData(e.target);
         const data = {
+            supplierToken: "6a2799d20dd27bd1398dcc10",
             platform: "Bar Bending Machine Importer Popup",
             platformEmail: "shreeshaktiinfratech@gmail.com",
             name: formData.get("contactPerson"),
