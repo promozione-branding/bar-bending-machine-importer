@@ -8,6 +8,7 @@ import Popup from "@/components/Main/Popup";
 import toast from "react-hot-toast";
 import { CheckCircle } from "lucide-react";
 import CartSidebar from "@/components/Main/CartSidebar";
+import { handleWhatsappClick } from "@/lib/tracking";
 
 export default function ProductDetail({ product, relatedProducts = [] }) {
   const [activeImage, setActiveImage] = useState(product.image);
@@ -180,7 +181,6 @@ export default function ProductDetail({ product, relatedProducts = [] }) {
                 className={`relative w-16 h-16 md:w-20 md:h-20 rounded-lg border shadow-sm overflow-hidden flex-shrink-0 ${activeImage.isVideo ? "ring-2 ring-yellow-500" : ""
                   }`}
               >
-                {/* ✅ Show YouTube thumbnail instead of black box */}
                 <Image
                   src={`https://img.youtube.com/vi/${product.videoUrl.split("youtu.be/")[1]?.split("?")[0] ||
                     product.videoUrl.split("v=")[1]?.split("&")[0]
@@ -217,6 +217,7 @@ export default function ProductDetail({ product, relatedProducts = [] }) {
             <a href={`https://wa.me/+918826544443?text=Hi, I have seen your product on https://barbendingmachineimporter.com and I am interested in ${product.name}`}
               target="_blank"
               className="flex items-center justify-center gap-2 border border-green-500 text-green-500 px-6 py-3 rounded-lg hover:bg-green-500 hover:text-white transition font-semibold"
+            onClick={handleWhatsappClick}
             >
               <FaWhatsapp size={18} />
               WhatsApp Now
