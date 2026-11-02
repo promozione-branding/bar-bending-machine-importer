@@ -12,7 +12,7 @@ export const CartProvider = ({ children }) => {
     const storedCart = localStorage.getItem("cart");
     if (storedCart) {
       setCartItems(JSON.parse(storedCart));
-    }
+    } 
     setIsLoaded(true); // mark loaded
   }, []);
 
