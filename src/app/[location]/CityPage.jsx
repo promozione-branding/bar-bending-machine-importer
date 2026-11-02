@@ -179,7 +179,7 @@ const cityName = citySlug ? formatCityName(citySlug) : "India";
         <section className="bg-[#3C2012] py-10 px-4 md:px-15 w-full">
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
                 <div className="text-white md:max-w-2xl">
-                    <a href='tel:+918826544443' target='blank' className="text-3xl md:text-5xl font-bold mb-3">
+                    <a href='tel:+918826544443' target='blank' className="text-3xl md:text-5xl font-bold mb-3" >
                         +91 8826544443
                     </a>
 

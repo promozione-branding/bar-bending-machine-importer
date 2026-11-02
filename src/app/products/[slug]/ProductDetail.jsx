@@ -8,7 +8,7 @@ import Popup from "@/components/Main/Popup";
 import toast from "react-hot-toast";
 import { CheckCircle } from "lucide-react";
 import CartSidebar from "@/components/Main/CartSidebar";
-import { handleWhatsappClick } from "@/lib/tracking";
+import { handleWhatsappClick, handleCallClick } from "@/lib/tracking";
 
 export default function ProductDetail({ product, relatedProducts = [] }) {
   const [activeImage, setActiveImage] = useState(product.image);
@@ -205,7 +205,13 @@ export default function ProductDetail({ product, relatedProducts = [] }) {
           </h1>
 
           <p className="text-xl font-bold text-amber-500">
-            ₹ {product.price}/Piece <a href="tel:+918826544443" className="ml-2 transition hover:underline hover:text-amber-500 text-base text-[#3C2012]">Get Latest Price</a>
+            ₹ {product.price}/Piece <a
+  href="tel:+918826544443"
+  onClick={() => handleCallClick({ obj: product, source: "Product Page" })}
+  className="ml-2 transition hover:underline hover:text-amber-500 text-base text-[#3C2012]"
+>
+  Get Latest Price
+</a>
           </p>
 
           <div className="flex flex-col lg:flex-row gap-4 flex-wrap">
@@ -214,14 +220,15 @@ export default function ProductDetail({ product, relatedProducts = [] }) {
               Add to Cart
             </button>
 
-            <a href={`https://wa.me/+918826544443?text=Hi, I have seen your product on https://barbendingmachineimporter.com and I am interested in ${product.name}`}
-              target="_blank"
-              className="flex items-center justify-center gap-2 border border-green-500 text-green-500 px-6 py-3 rounded-lg hover:bg-green-500 hover:text-white transition font-semibold"
-            onClick={handleWhatsappClick}
-            >
-              <FaWhatsapp size={18} />
-              WhatsApp Now
-            </a>
+<a
+  href={`https://wa.me/+918826544443?text=Hi, I have seen your product on https://barbendingmachineimporter.com and I am interested in ${product.name}`}
+  target="_blank"
+  onClick={() => handleWhatsappClick({ obj: product, source: "Product Page" })}
+  className="flex items-center justify-center gap-2 border border-green-500 text-green-500 px-6 py-3 rounded-lg hover:bg-green-500 hover:text-white transition font-semibold"
+>
+  <FaWhatsapp size={18} />
+  WhatsApp Now
+</a>
 
             <button onClick={() => setShowPopup(true)} className="flex items-center justify-center gap-2 border border-amber-500 text-amber-500 px-6 py-3 rounded-lg hover:bg-amber-500 hover:text-white transition font-semibold">
               <MessageCircle size={18} />
