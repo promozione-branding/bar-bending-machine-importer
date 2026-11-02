@@ -6,7 +6,7 @@ const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false); // important
-
+ 
   // Load from localStorage
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
